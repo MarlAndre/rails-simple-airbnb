@@ -5,3 +5,17 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'faker'
+
+4.times do
+  # pic = 'https://source.unsplash.com/300x300/?flats'
+  flat = Flat.new(
+    name: Faker::Marketing.buzzwords,
+    address: Faker::Address.street_address,
+    # picture_url: pic,
+    description: 'brand new flat for renting',
+    price_per_night: rand(50..500),
+    number_of_guests: rand(1..6)
+  )
+  flat.save!
+end
