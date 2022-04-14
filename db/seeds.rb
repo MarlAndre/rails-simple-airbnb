@@ -7,15 +7,16 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
 
+Flat.destroy_all
+
 4.times do
-  # pic = 'https://source.unsplash.com/300x300/?flats'
-  flat = Flat.new(
+  flat_picture = "https://images.unsplash.com/photo-1556784344-ad913c73cfc4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8ZmxhdHN8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60"
+  flat = Flat.create!(
     name: Faker::Marketing.buzzwords,
     address: Faker::Address.street_address,
-    # picture_url: pic,
+    picture: flat_picture,
     description: 'brand new flat for renting',
     price_per_night: rand(50..500),
     number_of_guests: rand(1..6)
   )
-  flat.save!
 end

@@ -1,0 +1,2 @@
+class AddImgToFlat < ApplicationRecord
+end

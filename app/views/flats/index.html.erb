@@ -1,0 +1,19 @@
+<div class="navbar">
+<h2>Simple Airbnb</h2>
+
+</div>
+
+<% @flats.each do |flat| %>
+<%= image_tag flat.picture %>
+
+  <h3><%= flat.name %></h3>
+  <p><%= flat.description %></p>
+  <p>👤<%= flat.number_of_guests %> 💲<%= flat.price_per_night %></p>
+  <%= link_to "More info", flat_path(flat), class: 'text-primary'%>
+  <%= link_to "Edit", edit_flat_path(flat), class: 'text-warning' %>
+  <%= link_to "Remove",
+    flat_path(flat),
+    method: :delete,
+    data: { confirm: "Are you sure you want to delete #{flat.name}?" },
+    class: 'text-danger' %>
+<% end %>
