@@ -1,19 +1,31 @@
 <div class="navbar">
-<h2>Simple Airbnb</h2>
-
+  <h2>Simple Airbnb</h2>
+  <form class="flex my-2 my-lg-0">
+    <input class="form-control me-2" name="query" type="search" placeholder="Search" aria-label="Search" value="">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+  </form>
+  <%= link_to "Add flat", new_flat_path, class:"btn btn-outline-primary my-2 my-sm-0 ms-2" %>
 </div>
 
-<% @flats.each do |flat| %>
-<%= image_tag flat.picture %>
+<div class="container">
+  <h1>All our Flats</h1>
+  <h5>All <%= Flat.count %> flats.</h5>
+  <div class="cards">
+    <% @flats.each do |flat| %>
+    <div class="card">
+      <%= image_tag flat.picture %>
+        <h3><%= flat.name %></h3>
+        <p><%= flat.description %></p>
+        <p>👤<%= flat.number_of_guests %> 💲<%= flat.price_per_night %></p>
+        <%= link_to "More info", flat_path(flat), class: 'text-primary'%>
+        <%= link_to "Edit", edit_flat_path(flat), class: 'text-warning' %>
+        <%= link_to "Remove",
+          flat_path(flat),
+          method: :delete,
+          data: { confirm: "Are you sure you want to delete #{flat.name}?" },
+          class: 'text-danger' %>
+    </div>
+    <% end %>
+  </div>
 
-  <h3><%= flat.name %></h3>
-  <p><%= flat.description %></p>
-  <p>👤<%= flat.number_of_guests %> 💲<%= flat.price_per_night %></p>
-  <%= link_to "More info", flat_path(flat), class: 'text-primary'%>
-  <%= link_to "Edit", edit_flat_path(flat), class: 'text-warning' %>
-  <%= link_to "Remove",
-    flat_path(flat),
-    method: :delete,
-    data: { confirm: "Are you sure you want to delete #{flat.name}?" },
-    class: 'text-danger' %>
-<% end %>
+</div>
